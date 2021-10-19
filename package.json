@@ -17,5 +17,8 @@
     "prettier-plugin-svelte": "^2.4.0",
     "svelte": "^3.42.6"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "d3-geo": "^3.0.1"
+  }
 }
