@@ -18,7 +18,7 @@
   $: setDimensions(height-(margin.top+margin.bottom),width-(margin.left+margin.right))
 
   setContext("basemap",{projection:_projection,dimensions})
-  
+
 </script>
   <div id="svgwrapper" 
     bind:clientWidth={width} 
