@@ -2,7 +2,9 @@
   import { setContext } from 'svelte'
   import { writable } from 'svelte/store'
   import { geoMercator } from 'd3-geo'
-  export let projection = null 
+  import { zoomer } from './_zoomer.js'
+  export let projection = null
+  export let margin = {left:10,right:10,top:10,bottom:10} 
   
   let width = 400
   let height = 600
@@ -12,22 +14,25 @@
 
   const setDimensions = (height,width)=> $dimensions ={height,width}
 
-  $: $_projection = projection ? projection : geoMercator 
-  $: setDimensions(height,width)
+  $: $_projection = projection ?? geoMercator 
+  $: setDimensions(height-(margin.top+margin.bottom),width-(margin.left+margin.right))
 
   setContext("basemap",{projection:_projection,dimensions})
-
+  
 </script>
-
-
-<div class = svg bind:clientWidth={width} bind:clientHeight={height}>
-  <svg >
-    <slot {width}{height} ></slot>
+  <div id="svgwrapper" 
+    bind:clientWidth={width} 
+    bind:clientHeight={height} 
+  >
+  <svg use:zoomer={margin}>
+    <g>
+      <slot></slot>
+    </g>
   </svg>
 </div>
 
 <style>
-  .svg{
+  #svgwrapper{
     background-color: aquamarine;
     height:100%;
     width: 100%;

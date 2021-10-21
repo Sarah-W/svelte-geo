@@ -3,7 +3,7 @@
   import { geoPath } from 'd3-geo'
   // import { xor_only, ctrl_click_adds, single_only,select_2 } from '$lib/select_modes.js'
   export let geojson
-  export let styleAccessor = feature =>({fill:"green",stroke:"black"})
+  export let styleAccessor = feature =>({'vector-effect':"non-scaling-stroke",fill:"green",stroke:"black"})
   export let selectMode = null
   export let selection = []
   export let idAccessor = feature=>JSON.stringify(feature.properties)
@@ -19,11 +19,6 @@
   $: geoPathFn = geoPath(projectionFn);
 
   let selectFn = ()=>[]
-
-  let single = (selection,feature)=>{
-    console.log('blah')
-    return [idAccessor(feature)]
-  }
   
   let multi = (selection,feature) => {
     if (selection.find(d=>d==idAccessor(feature))){
@@ -35,7 +30,7 @@
   }
   
   let nMulti = (n) => {
-    if((Number.isInteger(n)&& selectMode > 0) || n == Infinity ){
+    if((Number.isInteger(n)&& n > 0) || n == Infinity ){
       return (selection,feature)=>{
         selection = multi(selection,feature) 
         if(selection.length > n){
@@ -51,20 +46,23 @@
   $:clickHandler = (feature,e) => {
       selection = nMulti(selectMode)(selection,feature)
       dispatch("click",feature)
-      features=geojson.features
+      features=features
       features.forEach(feature => {
-        feature.properties.selected = !!selection.find(s=>s==idAccessor(feature))
+        const feature_id = idAccessor(feature)
+        feature.properties.selected = !!selection.find(s=>s==feature_id)
       });
     }
 
   $: if(selection.length > selectMode){
       while(selection.length > selectMode){
         selection.shift()
-        }
-      features=geojson.features
+      }
+      features=features
       features.forEach(feature => {
-        feature.properties.selected = !!selection.find(s=>s==idAccessor(feature))
-      })  
+        const feature_id = idAccessor(feature)
+        feature.properties.selected = !!selection.find(s=>s==feature_id)
+      })
+      selection=selection
     }  
 
 </script> 
