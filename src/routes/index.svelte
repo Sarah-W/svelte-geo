@@ -8,10 +8,9 @@
   import { scaleOrdinal } from 'd3-scale'
 
 
-
 let selection
 let n = 2
-let nIsInfinite =false
+let nIsInfinite = false
 let lastclicked
 let idAccessor = d=>d.properties.OBJECTID
 let foodscale = scaleOrdinal()

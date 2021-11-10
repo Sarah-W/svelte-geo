@@ -67,7 +67,6 @@
 
 </script> 
 
-
 <g class="map-group">
   {#each features as feature}
     <path
