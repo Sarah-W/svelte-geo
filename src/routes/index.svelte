@@ -2,8 +2,8 @@
 <script>
   import BaseMap from '../lib/BaseMap.svelte'
   import FeatureLayer from '../lib/FeatureLayer.svelte'
-  import coastline from '../lib/geojson/coastline_simplified_3dp.geojson.json'
-  import rto from '../lib/geojson/rto2017_simplified_3dp.geojson.json'
+  import coastline from './_geojson/coastline_simplified_3dp.geojson.json'
+  import rto from './_geojson/rto2017_simplified_3dp.geojson.json'
   import { geoAlbers,geoEqualEarth,geoEquirectangular,geoTransverseMercator } from 'd3-geo'
   import { scaleOrdinal } from 'd3-scale'
 
@@ -18,17 +18,10 @@ let foodscale = scaleOrdinal()
 	.range([
 		'lime',
 		'tomato',
-		'peachpuff',
 		'olive',
-		'papayawhip',
 		'Plum',
-		'wheat',
 		'Orange',
-		'salmon',
-		'HoneyDew',
-		'LightSalmon',
-		'LemonChiffon',
-		'blanchedalmond'
+		'salmon'
 	]);
 
 </script>
@@ -45,7 +38,7 @@ let foodscale = scaleOrdinal()
 </label> <br/>
 
 
-<p>Selection is {JSON.stringify(selection)}</p>
+<p>Currently Selected:  {selection?.join()}</p>
 
 {#if lastclicked}
   <p>The last thing you clicked was {JSON.stringify(lastclicked.properties)}</p>
@@ -54,8 +47,11 @@ let foodscale = scaleOrdinal()
 {/if}
 
 <div>
-  <BaseMap >
-    <FeatureLayer geojson={coastline} styleAccessor={()=>({stroke:"black",fill:"white"})} />
+  <BaseMap>
+    <FeatureLayer 
+      geojson={coastline} 
+      styleAccessor={()=>({stroke:"black",fill:"white"})} 
+    />
     <FeatureLayer 
       styleAccessor ={(feature)=>({
         fill:foodscale(feature.properties.RTO2017__1),
@@ -68,6 +64,7 @@ let foodscale = scaleOrdinal()
       {idAccessor}
       bind:selection={selection}  
       on:click={e=>lastclicked=e.detail}
+      on:mousemove={console.log}
     />
   </BaseMap>
 </div>

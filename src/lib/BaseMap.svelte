@@ -33,12 +33,10 @@
 
 <style>
   #svgwrapper{
-    background-color: aquamarine;
     height:100%;
     width: 100%;
   }
   svg{
-    background-color: aliceblue;
     height:100%;
     width: 100%;
   }

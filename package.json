@@ -1,12 +1,21 @@
 {
-  "name": "geo",
+  "name": "svelte-geo",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sarah-W/svelte-geo"
+  },
+  "keywords": ["svelte","svelte-kit","map"],
+  "description":"A small map component, suitable for building choropleths amongst other things, for Svelte.",
+  "author":"Sarah Wheaton ",
+  "licence":"MIT",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "package": "svelte-kit package"
   },
   "devDependencies": {
     "@sveltejs/kit": "next",
@@ -15,7 +24,8 @@
     "eslint-plugin-svelte3": "^3.2.1",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
-    "svelte": "^3.42.6"
+    "svelte": "^3.42.6",
+    "svelte2tsx": "^0.4.8"
   },
   "type": "module",
   "dependencies": {

@@ -75,6 +75,9 @@
       {...styleAccessor(feature)}
       d="{geoPathFn(feature)}"
       on:click={(e) => clickHandler(feature,e)}
+      on:mousemove={(e)=>dispatch("mousemove",{feature,event:e})}
+      on:mouseenter={(e)=>dispatch("mouseenter",{feature,event:e})}
+      on:mouseleave={(e)=>dispatch("mouseleave",{feature,event:e})}
     ></path>
   {/each}
 </g>
