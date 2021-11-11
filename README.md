@@ -27,7 +27,7 @@ BaseMap sets up things which are common to all feature layers e.g. the map proje
 
 ### BaseMap props
 **projection** : a [D3-geo projection](https://github.com/d3/d3-geo)   
-**margin** : a margin object of the form `{left:10,right:10,top:10,bottom:10}`
+**margin** : a margin object of the form `{left:10,right:10,top:10,bottom:10}`. Measurements are in px.
 
 FeatureLayer goes in a slot in BaseMap. It plots and styles the features from a geojson object.
 

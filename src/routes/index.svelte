@@ -4,6 +4,8 @@
   import FeatureLayer from '../lib/FeatureLayer.svelte'
   import coastline from './_geojson/coastline_simplified_3dp.geojson.json'
   import rto from './_geojson/rto2017_simplified_3dp.geojson.json'
+  import northisland from './_geojson/rto2017_ni_simplified_3dp.geojson.json'
+  import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json'
   import { geoAlbers,geoEqualEarth,geoEquirectangular,geoTransverseMercator } from 'd3-geo'
   import { scaleOrdinal } from 'd3-scale'
 
@@ -47,11 +49,11 @@ let foodscale = scaleOrdinal()
 
 <div>
   <BaseMap>
-    <FeatureLayer 
+    <!-- <FeatureLayer 
       geojson={coastline} 
       styleAccessor={()=>({stroke:"black",fill:"white"})} 
-    />
-    <FeatureLayer 
+    /> -->
+    <!-- <FeatureLayer 
       styleAccessor ={(feature)=>({
         fill:foodscale(feature.properties.RTO2017__1),
         stroke:"black",
@@ -64,7 +66,17 @@ let foodscale = scaleOrdinal()
       bind:selection={selection}  
       on:click={e=>lastclicked=e.detail}
       on:mousemove={console.log}
+    /> -->
+    <FeatureLayer 
+      geojson={coastline} 
+      styleAccessor={()=>({stroke:"black",fill:"white"})} 
     />
+    <FeatureLayer 
+      geojson={northisland}
+      styleAccessor={()=>({stroke:"black",fill:"white"})} 
+    />
+
+
   </BaseMap>
 </div>
 

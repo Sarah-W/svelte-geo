@@ -1,22 +1,21 @@
 <script>
   import { getContext, createEventDispatcher } from 'svelte'
-  import { geoPath } from 'd3-geo'
-  // import { xor_only, ctrl_click_adds, single_only,select_2 } from '$lib/select_modes.js'
+  import { geoPath, geoBounds } from 'd3-geo'
   export let geojson
   export let styleAccessor = feature =>({'vector-effect':"non-scaling-stroke",fill:"green",stroke:"black"})
   export let selectMode = null
   export let selection = []
   export let idAccessor = feature=>JSON.stringify(feature.properties)
+  export let layerName = null
 
   const dispatch = createEventDispatcher()
-
   
   let features = geojson.features
-  let { projection, dimensions } = getContext("basemap")
-  let p = $projection() 
+  let { projection } = getContext("basemap")
 
-	$: projectionFn = p.fitSize([$dimensions.width,$dimensions.height], geojson);
-  $: geoPathFn = geoPath(projectionFn);
+  layerName = projection.addLayer(geojson,layerName)
+
+  $: geoPathFn = geoPath($projection);
 
   let selectFn = ()=>[]
   
