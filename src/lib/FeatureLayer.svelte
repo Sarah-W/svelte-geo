@@ -2,7 +2,7 @@
   import { getContext, createEventDispatcher } from 'svelte'
   import { geoPath, geoBounds } from 'd3-geo'
   export let geojson
-  export let styleAccessor = feature =>({'vector-effect':"non-scaling-stroke",fill:"green",stroke:"black"})
+  export let styleAccessor = feature =>({'vector-effect':"non-scaling-stroke",fill:"lightgrey",stroke:"black"})
   export let selectMode = null
   export let selection = []
   export let idAccessor = feature=>JSON.stringify(feature.properties)
@@ -10,10 +10,12 @@
 
   const dispatch = createEventDispatcher()
   
-  let features = geojson.features
+  let _geojson = JSON.parse(JSON.stringify(geojson))
+
+  let features = _geojson.features
   let { projection } = getContext("basemap")
 
-  layerName = projection.addLayer(geojson,layerName)
+  layerName = projection.addLayer(_geojson,layerName)
 
   $: geoPathFn = geoPath($projection);
 

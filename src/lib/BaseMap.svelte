@@ -16,7 +16,7 @@
 
   console.log($_projection)
 
-  $: setSize(height,width)
+  $: setSize(height-(margin.top+margin.bottom),width-(margin.left+margin.right))
   $: console.log(_projection.size())
   setContext("basemap",{projection:_projection})
 
