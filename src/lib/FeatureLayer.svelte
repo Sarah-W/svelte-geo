@@ -9,14 +9,11 @@
   export let layerName = null
 
   const dispatch = createEventDispatcher()
-  
-  let _geojson = JSON.parse(JSON.stringify(geojson))
 
-  let features = _geojson.features
+  let features = geojson.features
   let { projection } = getContext("basemap")
 
-  layerName = projection.addLayer(_geojson,layerName)
-
+  layerName = projection.addLayer(geojson,layerName)
   $: geoPathFn = geoPath($projection);
 
   let selectFn = ()=>[]
@@ -40,29 +37,23 @@
         return selection
       }
     } else {return (selection,feature)=>[]}
-  } 
+  }
+  
+  const isSelected = (feature,selection)=> !!selection.find(s=>s==idAccessor(feature))
+
+  $: _styleAccessor = (feature,selection) => styleAccessor(feature,isSelected(feature,selection))
 
   $: selectFn = nMulti(selectMode)
 
   $:clickHandler = (feature,e) => {
       selection = nMulti(selectMode)(selection,feature)
       dispatch("click",feature)
-      features=features
-      features.forEach(feature => {
-        const feature_id = idAccessor(feature)
-        feature.properties.selected = !!selection.find(s=>s==feature_id)
-      });
     }
 
   $: if(selection.length > selectMode){
       while(selection.length > selectMode){
         selection.shift()
       }
-      features=features
-      features.forEach(feature => {
-        const feature_id = idAccessor(feature)
-        feature.properties.selected = !!selection.find(s=>s==feature_id)
-      })
       selection=selection
     }  
 
@@ -72,7 +63,7 @@
   {#each features as feature}
     <path
       class="feature-path"
-      {...styleAccessor(feature)}
+      {..._styleAccessor(feature,selection)}
       d="{geoPathFn(feature)}"
       on:click={(e) => clickHandler(feature,e)}
       on:mousemove={(e)=>dispatch("mousemove",{feature,event:e})}
