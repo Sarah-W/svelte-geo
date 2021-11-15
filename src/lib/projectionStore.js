@@ -19,11 +19,10 @@ export function createProjection(projection) {
           }
         }))
       }
-      console.log(layerBoundingBoxes)
     projection.fitSize(size,json)
     set(projection)
   }
-  
+
   return {
     subscribe,
     set,

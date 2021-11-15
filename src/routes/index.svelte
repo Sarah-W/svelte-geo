@@ -8,7 +8,7 @@
   import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json'
   import { geoAlbers,geoEqualEarth,geoEquirectangular,geoTransverseMercator } from 'd3-geo'
   import { scaleOrdinal, scaleLinear } from 'd3-scale'
-import { object_without_properties } from 'svelte/internal';
+  import { object_without_properties } from 'svelte/internal';
 
 
 let selection2,selection3
@@ -54,7 +54,7 @@ let foodscale = scaleOrdinal()
 
 <h3>Styling areas</h3>
 
-<p>Style areas based on feature information by supplying a styleAccessor function. The function takes a feature and returns a style object.</p>
+<p>Style areas based on feature information by supplying a styleAccessor function. The function takes a feature and it's selection status, and returns a style object.</p>
 <p>Areas are styled using a d3-scale linear scale, to change the fill-opacity acccording to the length of their names. This is one method of creating a choropleth.</p>
 
 <div class = basemap>
@@ -67,7 +67,6 @@ let foodscale = scaleOrdinal()
         stroke:"tomato",
         'vector-effect':"non-scaling-stroke"
         })}   
-      on:click={e=>clicked=e.detail}
     />
   </BaseMap>
 </div>
@@ -83,7 +82,6 @@ let foodscale = scaleOrdinal()
         stroke:"olive",
         'vector-effect':"non-scaling-stroke"
         })}   
-      on:click={e=>clicked=e.detail}
     />
   </BaseMap>
 </div>
@@ -126,11 +124,11 @@ let foodscale = scaleOrdinal()
 <div class = basemap>
   <BaseMap>
     <FeatureLayer 
-      styleAccessor ={(feature)=>({
+      styleAccessor ={(feature,selected)=>({
         fill:"black",
         stroke:"black",
         'vector-effect':"non-scaling-stroke",
-        'fill-opacity':feature.properties.selected ? 0.5:0.1
+        'fill-opacity':selected ? 0.5:0.1
         })} 
       geojson={rto}
       selectMode = {3}
@@ -160,17 +158,16 @@ let foodscale = scaleOrdinal()
   <BaseMap>
     <FeatureLayer
       geojson={rto} 
-      styleAccessor ={(feature)=>({
+      styleAccessor ={(feature,selected)=>({
         fill:"red",
         stroke:"black",
         'vector-effect':"non-scaling-stroke",
-        'fill-opacity':feature.properties.selected ? 0.9:0.1
+        'fill-opacity':selected ? 0.9:0.1
         })} 
       
       selectMode = {nIsInfinite ? Infinity : n}
       idAccessor={feature=>feature.properties.OBJECTID}
       bind:selection={selection3}  
-      on:click={e=>clicked=e.detail}
     />
   </BaseMap>
 </div>
