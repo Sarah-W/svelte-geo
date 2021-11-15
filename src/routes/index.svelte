@@ -7,7 +7,8 @@
   import northisland from './_geojson/rto2017_ni_simplified_3dp.geojson.json'
   import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json'
   import { geoAlbers,geoEqualEarth,geoEquirectangular,geoTransverseMercator } from 'd3-geo'
-  import { scaleOrdinal } from 'd3-scale'
+  import { scaleOrdinal, scaleLinear } from 'd3-scale'
+import { object_without_properties } from 'svelte/internal';
 
 
 let selection2,selection3
@@ -15,14 +16,27 @@ let n = 2
 let nIsInfinite = false
 let clicked
 let foodscale = scaleOrdinal()
-	.range([
+.range([
 		'lime',
 		'tomato',
+		'peachpuff',
 		'olive',
-		'Plum',
-		'Orange',
-		'salmon'
+		'papayawhip',
+		'plum',
+		'wheat',
+		'orange',
+		'salmon',
+		'honeydew',
+		'lightsalmon',
+		'lemonchiffon',
+		'blanchedalmond',
+    'chocolate' 
 	]);
+
+
+  let linearscale = scaleLinear()
+    .domain([5,15])
+
 
 </script>
 <h1> svelte-geo </h1>
@@ -36,12 +50,47 @@ let foodscale = scaleOrdinal()
     geojson={coastline} 
     />
   </BaseMap>
-</div> 
+</div>
+
+<h3>Styling areas</h3>
+
+<p>Style areas based on feature information by supplying a styleAccessor function. The function takes a feature and returns a style object.</p>
+<p>Areas are styled using a d3-scale linear scale, to change the fill-opacity acccording to the length of their names. This is one method of creating a choropleth.</p>
+
+<div class = basemap>
+  <BaseMap>
+    <FeatureLayer 
+      geojson={rto}
+      styleAccessor ={(feature)=>({
+        fill:'tomato',
+        "fill-opacity":linearscale(feature.properties.RTO2017__1.length),
+        stroke:"tomato",
+        'vector-effect':"non-scaling-stroke"
+        })}   
+      on:click={e=>clicked=e.detail}
+    />
+  </BaseMap>
+</div>
+
+<p>Areas are styled using a d3-scale ordinal scale, acccording to the first letter of their name. </p>
+
+<div class = basemap>
+  <BaseMap>
+    <FeatureLayer 
+      geojson={rto}
+      styleAccessor ={(feature)=>({
+        fill:foodscale(feature.properties.RTO2017__1[0]),
+        stroke:"olive",
+        'vector-effect':"non-scaling-stroke"
+        })}   
+      on:click={e=>clicked=e.detail}
+    />
+  </BaseMap>
+</div>
 
 <h3>Clickable areas</h3>
 
 <p>Clicking on an area dispatches a click event. e.detail contains the geojson feature object. </p>
-
 
 <div class = basemap>
   <BaseMap>
