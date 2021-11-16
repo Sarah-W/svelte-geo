@@ -1,8 +1,8 @@
 <script>
   import { getContext, createEventDispatcher } from 'svelte'
-  import { geoPath, geoBounds } from 'd3-geo'
+  import { geoPath } from 'd3-geo'
   export let geojson
-  export let styleAccessor = feature =>({'vector-effect':"non-scaling-stroke",fill:"lightgrey",stroke:"black"})
+  export let styleAccessor = (feature,selected) =>({'vector-effect':"non-scaling-stroke",fill:"lightgrey",stroke:"black"})
   export let selectMode = null
   export let selection = []
   export let idAccessor = feature=>JSON.stringify(feature.properties)
@@ -15,26 +15,25 @@
 
   layerName = projection.addLayer(geojson,layerName)
   $: geoPathFn = geoPath($projection);
-
-  let selectFn = ()=>[]
   
-  let multi = (selection,feature) => {
-    if (selection.find(d=>d==idAccessor(feature))){
-      selection = selection.filter(d=>d!=idAccessor(feature))
+  let multi = (_selection,feature) => {
+    if (_selection.find(d=>d==idAccessor(feature))){
+      _selection = _selection.filter(d=>d!=idAccessor(feature))
     } else {
-      selection.push(idAccessor(feature))
+      _selection.push(idAccessor(feature))
     }    
-    return selection
+    return _selection
   }
   
   let nMulti = (n) => {
+    let _selection = [...selection]
     if((Number.isInteger(n)&& n > 0) || n == Infinity ){
-      return (selection,feature)=>{
-        selection = multi(selection,feature) 
-        if(selection.length > n){
-          selection.shift()
+      return (_selection,feature)=>{
+        _selection = multi(_selection,feature) 
+        if(_selection.length > n){
+          _selection.shift()
         } 
-        return selection
+        return _selection
       }
     } else {return (selection,feature)=>[]}
   }
@@ -43,11 +42,12 @@
 
   $: _styleAccessor = (feature,selection) => styleAccessor(feature,isSelected(feature,selection))
 
-  $: selectFn = nMulti(selectMode)
+  // $: console.trace("selection ",selection)
 
-  $:clickHandler = (feature,e) => {
+
+  const clickHandler = (feature,event) => {
       selection = nMulti(selectMode)(selection,feature)
-      dispatch("click",feature)
+      dispatch("click",{feature,event})
     }
 
   $: if(selection.length > selectMode){
@@ -56,6 +56,7 @@
       }
       selection=selection
     }  
+  
 
 </script> 
 
@@ -65,7 +66,7 @@
       class="feature-path"
       {..._styleAccessor(feature,selection)}
       d="{geoPathFn(feature)}"
-      on:click={(e) => clickHandler(feature,e)}
+      on:click ={(e) => clickHandler(feature,e)}
       on:mousemove={(e)=>dispatch("mousemove",{feature,event:e})}
       on:mouseenter={(e)=>dispatch("mouseenter",{feature,event:e})}
       on:mouseleave={(e)=>dispatch("mouseleave",{feature,event:e})}

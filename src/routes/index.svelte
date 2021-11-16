@@ -99,7 +99,7 @@ let foodscale = scaleOrdinal()
         stroke:"black",
         'vector-effect':"non-scaling-stroke"
         })}   
-      on:click={e=>clicked=e.detail}
+      on:click={e=>clicked=e.detail.feature}
     />
   </BaseMap>
 </div>

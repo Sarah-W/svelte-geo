@@ -11,7 +11,7 @@ A tiny library for making maps, intended for use in data visualisation projects.
   >
     <FeatureLayer
       geojson={geojson_object}
-      styleAccessor = {feature => style_object}
+      styleAccessor = {(feature, selected) => style_object}
       idAccessor = {feature => feature_uid}
       selectMode = {integer >=0 || Infinity}
       bind:selection = {selection}
@@ -34,10 +34,11 @@ FeatureLayer goes in a slot in BaseMap. It plots and styles the features from a 
 ### FeatureLayer props
 
 **geojson** : a geojson object. **Required**   
-**styleAccessor** : a function that takes a feature from your geojson object, and returns a style object for an svg path.   
+**styleAccessor** : a function that takes a feature from your geojson object, and a selection status (boolean), and returns a style object for an svg path.   
 **idAccessor** : a function that takes a feature from your geojson object, and returns a unique identifier for the feature. This is what will be stored in `selection`.   
 **selectMode** : defines the number of features that may be selected. May be an integer >=0, or `Infinity`.    
-**selection** : an array containing the uid's of the current selection. Bind to `selection` to control the selection programmatically.   
+**selection** : an array containing the uid's of the current selection. Bind to `selection` to control the selection programmatically. 
+
 
 
 

@@ -48,7 +48,7 @@ let foodscale = scaleOrdinal()
         "stroke":selected ? "tomato":"olive",
         "stroke-width":selected ? 2:1,
         'vector-effect':"non-scaling-stroke"
-        })}   
+        })}
       on:click={e=>clicked=e.detail}
       selectMode = {nIsInfinite ? Infinity : n}
       idAccessor={feature=>feature.properties.RTO2017__1}
@@ -73,7 +73,6 @@ let foodscale = scaleOrdinal()
 {:else}
   <p>Click on the map!</p>
 {/if}
-
 
 <style>
   div.basemap{
