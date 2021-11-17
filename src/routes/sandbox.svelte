@@ -34,6 +34,9 @@ import Index from './index.svelte';
   const presetSelection = ["Northland","Southland"]
   let projection = geoMercator
 
+  let showNorth = true
+  let showSouth = false
+
 </script>
 
 <h1>svelte-geo sandbox</h1>
@@ -81,6 +84,50 @@ import Index from './index.svelte';
     <input type="radio" id="geoEqualEarth" name="projection" on:click={()=>projection = geoEqualEarth}>
     <label for="geoEqualEarth">geoEqualEarth</label><br>
   
+  </div>
+</div>
+<div class = wrapper >
+  <div class="basemap">
+    <BaseMap>
+      {#if showNorth} 
+        <FeatureLayer
+          geojson={northisland}
+          styleAccessor={(feature, selected) => ({
+            fill: selected ? 'blue' : 'grey',
+            'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
+            stroke: selected ? 'blue' : 'grey',
+            'stroke-width': selected ? 2 : 1,
+            'vector-effect': 'non-scaling-stroke'
+          })}
+          selectMode={Infinity}
+          idAccessor={(feature) => feature.properties.RTO2017__1}
+        />
+      {/if}
+      {#if showSouth}   
+        <FeatureLayer
+          geojson={southisland}
+          styleAccessor={(feature, selected) => ({
+            fill: selected ? 'green' : 'grey',
+            'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
+            stroke: selected ? 'green' : 'grey',
+            'stroke-width': selected ? 2 : 1,
+            'vector-effect': 'non-scaling-stroke'
+          })}
+          selectMode={Infinity}
+          idAccessor={(feature) => feature.properties.RTO2017__1}
+        />
+      {/if}
+    </BaseMap>
+  </div>
+  <div class = commentary>
+    <label>
+      Show the North Island
+      <input type="checkbox" bind:checked={showNorth} />
+    </label><br>
+    <label>
+      Show the South Island
+      <input type="checkbox" bind:checked={showSouth} />
+    </label>
   </div>
 </div>
 

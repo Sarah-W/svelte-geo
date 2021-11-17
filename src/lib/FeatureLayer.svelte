@@ -1,5 +1,5 @@
 <script>
-	import { getContext, createEventDispatcher } from 'svelte';
+	import { getContext, createEventDispatcher, onDestroy } from 'svelte';
 	import { geoPath } from 'd3-geo';
 	export let geojson;
 	export let styleAccessor = (feature, selected) => ({
@@ -18,6 +18,8 @@
 	let { projection } = getContext('basemap');
 
 	layerName = projection.addLayer(geojson, layerName);
+  onDestroy(()=>{projection.clear(layerName)})
+
 	$: geoPathFn = geoPath($projection);
 
 	let multi = (_selection, feature) => {
