@@ -5,7 +5,7 @@
 	import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
 	import northisland from './_geojson/rto2017_ni_simplified_3dp.geojson.json';
 	import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json';
-	import { geoAlbers, geoEqualEarth, geoEquirectangular, geoTransverseMercator } from 'd3-geo';
+	import { geoEqualEarth, geoMercator} from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
 	import { object_without_properties } from 'svelte/internal';
 
@@ -31,6 +31,8 @@
 	]);
 
 	let linearscale = scaleLinear().domain([5, 15]);
+  let projection = geoEqualEarth
+
 </script>
 
 <h1>svelte-geo</h1>
@@ -40,6 +42,23 @@
 
 <div class="basemap">
 	<BaseMap>
+		<FeatureLayer geojson={coastline} />
+	</BaseMap>
+</div>
+
+<h3>Projection</h3>
+
+<p> The default projection is geoMercator, but you can use any d3-geo projection function that works for your geojson.</p>
+<p> You may switch between projections on the fly. 
+  <input type="radio" id="geoEqualEarth" name="projection" on:click={()=>projection = geoEqualEarth} checked>
+  <label for="geoEqualEarth">geoEqualEarth</label> 
+  <input type="radio" id="geoMercator" name="projection" on:click={()=>projection = geoMercator} >
+  <label for="geoMercator">geoMercator</label>
+</p>
+
+
+<div class="basemap">
+	<BaseMap projection = { projection } >
 		<FeatureLayer geojson={coastline} />
 	</BaseMap>
 </div>
@@ -105,7 +124,7 @@
 </div>
 
 {#if clicked}
-	<p>The last thing you clicked was {JSON.stringify(clicked.properties)}</p>
+	<p>The last thing you clicked was:</p><pre>{JSON.stringify(clicked.properties,undefined,2)}</pre>
 {:else}
 	<p>Click on the map!</p>
 {/if}

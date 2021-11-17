@@ -34,8 +34,10 @@ export function createProjection(projection) {
 			return size;
 		},
 		setProjection:(_projection)=>{
-			projection = _projection()
-			recalc()
+			if (_projection){
+				projection = _projection()
+				recalc()
+			}
 		}, 
 		addLayer: (geojson, layerName) => {
 			layerName = layerName ?? Math.random().toString(36).slice(-9);
