@@ -18,6 +18,7 @@
 	let { projection } = getContext('basemap');
 
 	layerName = projection.addLayer(geojson, layerName);
+  
   onDestroy(()=>{projection.clear(layerName)})
 
 	$: geoPathFn = geoPath($projection);
@@ -49,8 +50,6 @@
 
 	$: _styleAccessor = (feature, selection) =>
 		styleAccessor(feature, isSelected(feature, selection));
-
-	// $: console.trace("selection ",selection)
 
 	const clickHandler = (feature, event) => {
 		selection = nMulti(selectMode)(selection, feature);

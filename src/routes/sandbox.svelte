@@ -7,9 +7,8 @@
 	import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json';
 	import { geoAlbers, geoEqualEarth, geoEquirectangular, geoMercator, geoTransverseMercator } from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
-import Index from './index.svelte';
 
-	let selection = ["Auckland"];
+	let selection = [];
 	let n = 2;
 	let nIsInfinite = false;
 	let clicked;
@@ -36,6 +35,7 @@ import Index from './index.svelte';
 
   let showNorth = true
   let showSouth = false
+  let southSelection = []
 
 </script>
 
@@ -115,6 +115,7 @@ import Index from './index.svelte';
           })}
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
+          bind:selection = {southSelection}
         />
       {/if}
     </BaseMap>
@@ -128,6 +129,10 @@ import Index from './index.svelte';
       Show the South Island
       <input type="checkbox" bind:checked={showSouth} />
     </label>
+
+    <p>To persist the selection, bind it to a variable, or it will be lost when the layer is destroyed.</p>
+    <p>The South Island layer is bound, the North Island one is not. </p>
+
   </div>
 </div>
 
@@ -138,8 +143,8 @@ import Index from './index.svelte';
   }
 	div.basemap {
 		border: black solid thin;
-		width: 600px;
-		height: 600px;
+		width: 500px;
+		height: 500px;
 		margin: 50px;
 	}
   div.commentary{
