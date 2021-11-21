@@ -37,7 +37,7 @@
 </script>
 <div class = container>
   <h1>svelte-geo</h1>
-  <h2>A basic map library for svelte projects</h2>
+  <h2>A basic map library for svelte projects, built using <a href = 'https://d3js.org/'>D3.js</a> </h2>
   <div class = example>
     <h3>Minimum viable</h3>
     <p>The map inherits the size of the container you put it in. 
@@ -319,7 +319,7 @@
       geojson feature and return a uid. It defaults to feature=>JSON.stringify(feature.properties).
     </p>
     <p>
-      Set selectMode to the number of   
+      Set selectMode to the number of areas you wish to be able to select at one time. Oldest selections are discarded as new ones are added.   
     </p>
     <p>
       Use a styleAccessor function to highlight the selected areas. The function should have as 
