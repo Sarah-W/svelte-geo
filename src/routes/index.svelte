@@ -1,10 +1,10 @@
 <script>
 	import BaseMap from '$lib/BaseMap.svelte';
 	import FeatureLayer from '$lib/FeatureLayer.svelte';
-	import coastline from './_geojson/coastline_simplified_3dp.geojson.json';
-	import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
-	import northisland from './_geojson/rto2017_ni_simplified_3dp.geojson.json';
-	import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json';
+	import coastline from '../_geojson/coastline_simplified_3dp.geojson.json';
+	import rto from '../_geojson/rto2017_simplified_3dp.geojson.json';
+	import northisland from '../_geojson/rto2017_ni_simplified_3dp.geojson.json';
+	import southisland from '../_geojson/rto2017_si_simplified_3dp.geojson.json';
 	import { geoEqualEarth, geoMercator} from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
   import SSRPrism from './_SSRPrism.svelte'

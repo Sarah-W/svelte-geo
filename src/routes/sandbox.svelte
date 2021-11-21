@@ -1,9 +1,9 @@
 <script>
 	import BaseMap from '$lib/BaseMap.svelte';
 	import FeatureLayer from '$lib/FeatureLayer.svelte';
-	import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
-	import northisland from './_geojson/rto2017_ni_simplified_3dp.geojson.json';
-	import southisland from './_geojson/rto2017_si_simplified_3dp.geojson.json';
+	import rto from '../_geojson/rto2017_simplified_3dp.geojson.json';
+	import northisland from '../_geojson/rto2017_ni_simplified_3dp.geojson.json';
+	import southisland from '../_geojson/rto2017_si_simplified_3dp.geojson.json';
 	import { geoAlbers, geoEqualEarth, geoEquirectangular, geoMercator, geoTransverseMercator } from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
 
