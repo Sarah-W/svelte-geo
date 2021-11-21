@@ -33,7 +33,8 @@
 
 	let linearScale = scaleLinear().domain([5, 15]);
   let projection = geoEqualEarth
-
+  const openScript = "<scri" + "pt>"
+  const closeScript = "</scri" + "pt>"
 </script>
 <div class = container>
   <h1>svelte-geo</h1>
@@ -52,11 +53,12 @@
       </div>
       <div class = code>
         <SSRPrism language="svelte">
-              {`<script>
+              {`
+  ${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';             
   //you can use any geojson. Here we are importing it from a file. 
   import coastline from './_geojson/coastline_simplified_3dp.geojson.json';
-</script>
+  ${closeScript}
 
 <div class = "basemap" >
   <BaseMap>
@@ -98,12 +100,12 @@
       </div>
       <div class = code>
         <SSRPrism language="svelte">
-          {`<script>
+          {`${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';       
   import { geoMercator, geoEqualEarth, Bob } from 'd3-geo';
   import coastline from './_geojson/coastline_simplified_3dp.geojson.json';
   let projection = geoEqualEarth
-</script>
+${closeScript}
 
 <input type="radio" id="geoEqualEarth" name="projection" 
   on:click={()=>projection = geoEqualEarth} checked>
@@ -160,12 +162,12 @@
       </div>
       <div class = code>
         <SSRPrism language="svelte">
-            {`<script>
+            {`${openScript}
     import { BaseMap, FeatureLayer } from 'svelte-geo';
     import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
     import { scaleLinear } from 'd3-scale';
     let linearScale = scaleLinear().domain([5, 15]);
-  </script>  
+  ${closeScript}  
   <div class="basemap">
     <BaseMap>
       <FeatureLayer
@@ -214,13 +216,13 @@
       </div>  
       <div class = code>
         <SSRPrism language="svelte">
-          {`<script>
+          {`${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';
   import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
   import { scaleOrdinal } from 'd3-scale';
   let ordinalScale = scaleOrdinal()
     .range(['lime','tomato','peachpuff','olive','papayawhip','plum','wheat','orange','salmon','honeydew','lightsalmon','lemonchiffon','blanchedalmond','chocolate']);  
-</script>  
+${closeScript}  
 
 <div class="basemap">
   <BaseMap>
@@ -274,11 +276,11 @@
       </div>
       <div class = code>
         <SSRPrism language="svelte">
-          {`<script>
+          {`${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';
   import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
   let clicked  
-</script>  
+${closeScript}  
 
 <div class="basemap">
   <BaseMap>
@@ -350,11 +352,11 @@
         </div>
       </div>
       <div class = code>
-        <SSRPrism>{`<script>
+        <SSRPrism>{`${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';
   import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
   let selection = [] 
-</script>  
+${closeScript}  
 
 <p>Select up to 3 areas</p>
 <p>Current Selection: {JSON.stringify(selection)}</p>   
@@ -428,14 +430,14 @@
       </div>
       <div class = code>
         <SSRPrism>
-    {`<script>
+    {`${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';
   import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
   
   let selectModeValue = 2
   let selectModeValueIsInfinite = false
   let selection = [] 
-</script>  
+${closeScript}  
 
 <label>
 	Selecting up to
