@@ -1,4 +1,4 @@
-import BaseMap from "./BaseMap.svelte"
-import FeatureLayer from "./FeatureLayer.svelte"
+import BaseMap from './BaseMap.svelte';
+import FeatureLayer from './FeatureLayer.svelte';
 
-export {BaseMap, FeatureLayer}
+export { BaseMap, FeatureLayer };
