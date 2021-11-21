@@ -100,7 +100,7 @@
         <SSRPrism language="svelte">
           {`<script>
   import { BaseMap, FeatureLayer } from 'svelte-geo';       
-  import { geoMercator, geoEqualEarth } from 'd3-geo';
+  import { geoMercator, geoEqualEarth, Bob } from 'd3-geo';
   import coastline from './_geojson/coastline_simplified_3dp.geojson.json';
   let projection = geoEqualEarth
 </script>
