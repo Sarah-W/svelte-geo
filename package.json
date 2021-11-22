@@ -1,6 +1,6 @@
 {
 	"name": "svelte-geo",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Sarah-W/svelte-geo"
@@ -12,7 +12,7 @@
 	],
 	"description": "A small map component, suitable for building choropleths amongst other things, for Svelte.",
 	"author": "Sarah Wheaton ",
-	"homepage":"https://svelte-geo.vercel.app/",
+	"homepage": "https://svelte-geo.vercel.app/",
 	"license": "MIT",
 	"scripts": {
 		"dev": "svelte-kit dev",
