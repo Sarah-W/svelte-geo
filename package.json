@@ -12,6 +12,7 @@
 	],
 	"description": "A small map component, suitable for building choropleths amongst other things, for Svelte.",
 	"author": "Sarah Wheaton ",
+	"homepage":"https://svelte-geo.vercel.app/",
 	"license": "MIT",
 	"scripts": {
 		"dev": "svelte-kit dev",
@@ -19,7 +20,7 @@
 		"preview": "svelte-kit preview",
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
-		"packagee": "svelte-kit package"
+		"package": "svelte-kit package"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^1.0.0-next.31",
