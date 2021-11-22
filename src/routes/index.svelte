@@ -39,7 +39,6 @@
 <div class = container>
   <a href= https://github.com/Sarah-W/svelte-geo><h1>svelte-geo</h1></a>
   <h2>A basic map library for svelte projects, built using <a href = 'https://d3js.org/'>D3.js</a> </h2>
-  Hi Jarrod
   
   <div class = example>
     <h3>Minimum viable</h3>
@@ -104,7 +103,7 @@
         <SSRPrism language="svelte">
           {`${openScript}
   import { BaseMap, FeatureLayer } from 'svelte-geo';       
-  import { geoMercator, geoEqualEarth, Bob } from 'd3-geo';
+  import { geoMercator, geoEqualEarth } from 'd3-geo';
   import coastline from './_geojson/coastline_simplified_3dp.geojson.json';
   let projection = geoEqualEarth
 ${closeScript}
