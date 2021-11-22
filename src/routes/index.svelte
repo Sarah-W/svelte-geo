@@ -37,8 +37,9 @@
   const closeScript = "</scri" + "pt>"
 </script>
 <div class = container>
-  <h1>svelte-geo</h1>
+  <a href= https://github.com/Sarah-W/svelte-geo><h1>svelte-geo</h1></a>
   <h2>A basic map library for svelte projects, built using <a href = 'https://d3js.org/'>D3.js</a> </h2>
+  
   <div class = example>
     <h3>Minimum viable</h3>
     <p>The map inherits the size of the container you put it in. 

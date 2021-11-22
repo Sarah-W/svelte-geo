@@ -2,6 +2,8 @@
 
 A tiny library for making maps, intended for use in data visualisation projects. Svelte-geo uses [d3-geo](https://github.com/d3/d3-geo) to plot .geojson polygon data as svg.
 
+[svelte-geo in action](https://svelte-geo.vercel.app/)
+
 ## Two components
 
 ```
