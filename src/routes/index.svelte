@@ -8,6 +8,7 @@
 	import { geoEqualEarth, geoMercator} from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
   import SSRPrism from './_SSRPrism.svelte'
+import { svg_element } from 'svelte/internal';
   // import 'prismjs/themes/prism-okaidia.css'
 
 	let selection2, selection3;
@@ -135,12 +136,13 @@ ${closeScript}
     </div> 
   </div>
   <div class = example>
-    <h3>Styling areas</h3>
+    <h3>Color and Style </h3>
 
     <p>
       Apply styles to areas based on feature information by supplying a styleAccessor function. The function takes
       a feature and it's selection status, and returns a style object.
     </p>
+    <p>Setting background on the BaseMap component to any valid html color sets the background-color style of the .svg. <p>
     <p>
       Areas are styled using a d3-scale linear scale, to change the fill-opacity acccording to the
       length of their names (feature.properties.RTO2017__1). This is one method of creating a choropleth.
@@ -148,7 +150,7 @@ ${closeScript}
     <div class = row>
       <div class = output>
         <div class="basemap">
-          <BaseMap>
+          <BaseMap background = {'#fbf9e4'}>
             <FeatureLayer
               geojson={rto}
               styleAccessor={(feature) => ({
@@ -170,7 +172,7 @@ ${closeScript}
     let linearScale = scaleLinear().domain([5, 15]);
   ${closeScript}  
   <div class="basemap">
-    <BaseMap>
+    <BaseMap background = {'#fbf9e4'}>
       <FeatureLayer
         geojson={rto}
         styleAccessor={(feature) => ({

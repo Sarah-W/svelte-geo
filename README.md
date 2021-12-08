@@ -10,6 +10,7 @@ A tiny library for making maps, intended for use in data visualisation projects.
   <BaseMap
     projection={a_d3-geo_projection}
     margin = {{left:10,right:10,top:10,bottom:10} }
+    background = {any_valid_html_color}
   >
     <FeatureLayer
       geojson={geojson_object}
@@ -30,9 +31,11 @@ BaseMap sets up things which are common to all feature layers e.g. the map proje
 ### BaseMap props
 
 **projection** : a [D3-geo projection](https://github.com/d3/d3-geo)  
-**margin** : a margin object of the form `{left:10,right:10,top:10,bottom:10}`. Measurements are in px.
+**margin** : a margin object of the form `{left:10,right:10,top:10,bottom:10}`. Measurements are in px.   
+**background** : sets the background color of the .svg element. 
 
 FeatureLayer goes in a slot in BaseMap. It plots and styles the features from a geojson object.
+You may use multiple FeatureLayers in a map.  
 
 ### FeatureLayer props
 
