@@ -35,6 +35,8 @@
   let showNorth = true
   let showSouth = false
   let southSelection = []
+  let color = "#fffff0"
+
 
 </script>
 
@@ -87,7 +89,7 @@
 </div>
 <div class = wrapper >
   <div class="basemap">
-    <BaseMap>
+    <BaseMap background = {color}>
       {#if showNorth} 
         <FeatureLayer
           geojson={northisland}
@@ -131,6 +133,10 @@
 
     <p>To persist the selection, bind it to a variable, or it will be lost when the layer is destroyed.</p>
     <p>The South Island layer is bound, the North Island one is not. </p>
+
+    <p>Set a background color:
+    <input type="color" bind:value={color}>
+    </p>
 
   </div>
 </div>

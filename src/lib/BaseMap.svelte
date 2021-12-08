@@ -5,7 +5,8 @@
 	import { zoomer } from './_zoomer.js';
 	export let projection = null;
 	export let margin = { left: 10, right: 10, top: 10, bottom: 10 };
-
+	export let background = "unset"
+	
 	let width = 0;
 	let height = 0;
 
@@ -20,7 +21,7 @@
 </script>
 
 <div id="svgwrapper" bind:clientWidth={width} bind:clientHeight={height}>
-	<svg use:zoomer={margin}>
+	<svg use:zoomer={margin} style={`background-color:${background}`}>
 		<g>
 			<slot />
 		</g>
