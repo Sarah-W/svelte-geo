@@ -35,8 +35,8 @@
   let showNorth = true
   let showSouth = false
   let southSelection = []
-  let color = "#fffff0"
-
+  let color = "#030417"
+  let reset = false
 
 </script>
 
@@ -89,14 +89,14 @@
 </div>
 <div class = wrapper >
   <div class="basemap">
-    <BaseMap background = {color}>
+    <BaseMap background = {color} bind:zoomReset = {reset}>
       {#if showNorth} 
         <FeatureLayer
           geojson={northisland}
           styleAccessor={(feature, selected) => ({
-            fill: selected ? 'blue' : 'grey',
+            fill: selected ? 'blue' : 'white',
             'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
-            stroke: selected ? 'blue' : 'grey',
+            stroke: selected ? 'blue' : 'white',
             'stroke-width': selected ? 2 : 1,
             'vector-effect': 'non-scaling-stroke'
           })}
@@ -108,9 +108,9 @@
         <FeatureLayer
           geojson={southisland}
           styleAccessor={(feature, selected) => ({
-            fill: selected ? 'green' : 'grey',
+            fill: selected ? 'green' : 'white',
             'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
-            stroke: selected ? 'green' : 'grey',
+            stroke: selected ? 'green' : 'white',
             'stroke-width': selected ? 2 : 1,
             'vector-effect': 'non-scaling-stroke'
           })}
@@ -137,6 +137,7 @@
     <p>Set a background color:
     <input type="color" bind:value={color}>
     </p>
+    <button on:click={reset} >reset zoom</button>
 
   </div>
 </div>
