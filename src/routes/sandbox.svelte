@@ -44,6 +44,8 @@
 <h2>everything works with everything else</h2>
 <p>When I was in geology 102 at the University of Auckland, the lecturer apologised for having to teach us about the geology of New Zealand, as it was just too complicated for a first-year course. So many geological processes, piled on top of each other.</p>
 <p>This example is a bit like that.</p> 
+<b>This is a sandbox primarily for testing things out. It may change randomly and without warning! </b>
+
 
 <div class = wrapper >
   <div class="basemap">
@@ -102,6 +104,7 @@
           })}
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
+          on:destroy={reset}
         />
       {/if}
       {#if showSouth}   

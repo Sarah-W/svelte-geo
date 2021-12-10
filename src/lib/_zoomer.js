@@ -1,8 +1,6 @@
 import { zoom, zoomIdentity} from 'd3-zoom';
 import { select } from 'd3-selection';
 
-console.log({zoomIdentity})
-
 export function createZoomer() {
 	const z = zoom()
 	let _svg

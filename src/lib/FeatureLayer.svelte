@@ -11,15 +11,18 @@
 	export let selection = [];
 	export let idAccessor = (feature) => JSON.stringify(feature.properties);
 	export let layerName = null;
-
+	export let addExtentsToProjection = true
 	const dispatch = createEventDispatcher();
 
 	let features = geojson.features;
 	let { projection } = getContext('basemap');
 
-	layerName = projection.addLayer(geojson, layerName);
+	if(addExtentsToProjection){	layerName = projection.addLayer(geojson, layerName)};
   
-  onDestroy(()=>{projection.clear(layerName)})
+  onDestroy(()=>{
+		if(addExtentsToProjection){projection.clear(layerName)}
+		dispatch("destroy",layerName)
+	})
 
 	$: geoPathFn = geoPath($projection);
 
