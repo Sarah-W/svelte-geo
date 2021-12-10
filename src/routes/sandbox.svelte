@@ -35,8 +35,8 @@
   let showNorth = true
   let showSouth = false
   let southSelection = []
-  let color = "#fffff0"
-
+  let color = "#030417"
+  let reset = false
 
 </script>
 
@@ -44,6 +44,8 @@
 <h2>everything works with everything else</h2>
 <p>When I was in geology 102 at the University of Auckland, the lecturer apologised for having to teach us about the geology of New Zealand, as it was just too complicated for a first-year course. So many geological processes, piled on top of each other.</p>
 <p>This example is a bit like that.</p> 
+<b>This is a sandbox primarily for testing things out. It may change randomly and without warning! </b>
+
 
 <div class = wrapper >
   <div class="basemap">
@@ -89,28 +91,29 @@
 </div>
 <div class = wrapper >
   <div class="basemap">
-    <BaseMap background = {color}>
+    <BaseMap background = {color} bind:zoomReset = {reset}>
       {#if showNorth} 
         <FeatureLayer
           geojson={northisland}
           styleAccessor={(feature, selected) => ({
-            fill: selected ? 'blue' : 'grey',
+            fill: selected ? 'blue' : 'white',
             'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
-            stroke: selected ? 'blue' : 'grey',
+            stroke: selected ? 'blue' : 'white',
             'stroke-width': selected ? 2 : 1,
             'vector-effect': 'non-scaling-stroke'
           })}
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
+          on:destroy={reset}
         />
       {/if}
       {#if showSouth}   
         <FeatureLayer
           geojson={southisland}
           styleAccessor={(feature, selected) => ({
-            fill: selected ? 'green' : 'grey',
+            fill: selected ? 'green' : 'white',
             'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
-            stroke: selected ? 'green' : 'grey',
+            stroke: selected ? 'green' : 'white',
             'stroke-width': selected ? 2 : 1,
             'vector-effect': 'non-scaling-stroke'
           })}
@@ -137,6 +140,7 @@
     <p>Set a background color:
     <input type="color" bind:value={color}>
     </p>
+    <button on:click={reset} >reset zoom</button>
 
   </div>
 </div>
