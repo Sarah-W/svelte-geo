@@ -105,6 +105,7 @@
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
           on:destroy={reset}
+          on:mount={reset}
         />
       {/if}
       {#if showSouth}   

@@ -7,6 +7,7 @@
   import Projection from './_examples/Projection.svelte';
   import SelectAreas2 from './_examples/SelectAreas2.svelte';
   import LayerBehavior from './_examples/LayerBehavior.svelte';
+  import ZoomBehavior from './_examples/ZoomBehavior.svelte';
 
 </script>
 <div class = container>
@@ -20,6 +21,7 @@
   <SelectAreas1></SelectAreas1>
   <SelectAreas2></SelectAreas2>
   <LayerBehavior></LayerBehavior>
+  <ZoomBehavior></ZoomBehavior>
 
 </div>
 
