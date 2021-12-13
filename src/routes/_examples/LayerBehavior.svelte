@@ -20,11 +20,14 @@
     <h3>Multiple Layers</h3>
     <p>
       You may add multiple layers. The projection bounding box is set to the aggregate of the layer bounding boxes. </p>
-    
+    <p>
+      Layers emit <code>mount</code> and <code>destroy</code> events.
+    </p>
     <p> In this example, we have separate layers for the North and South Islands. They are being created and destroyed when toggled with the checkboxes below the map.</p>
     <p>The current selection will be lost when the layer is destroyed, but you can make it persist by binding it to a variable. 
       Here, the selection for the South Island layer is bound, the North Island one is not.</p>
-      <p>Try selecting a few areas on each island, then turning the layers on and off.</p>
+    <p>Try selecting a few areas on each island, then turning the layers on and off.</p>
+    
 
     <div class = row>
       <div class = output>
