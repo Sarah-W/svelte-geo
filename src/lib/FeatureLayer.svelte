@@ -1,5 +1,5 @@
 <script>
-	import { getContext, createEventDispatcher, onDestroy } from 'svelte';
+	import { getContext, createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import { geoPath } from 'd3-geo';
 	export let geojson;
 	export let styleAccessor = (feature, selected) => ({
@@ -23,6 +23,8 @@
 		if(addExtentsToProjection){projection.clear(layerName)}
 		dispatch("destroy",layerName)
 	})
+
+	onMount(()=>dispatch("mount",layerName))
 
 	$: geoPathFn = geoPath($projection);
 
