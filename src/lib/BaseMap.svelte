@@ -6,7 +6,7 @@
 	export let projection = null;
 	export let margin = { left: 10, right: 10, top: 10, bottom: 10 };
 	export let background = "unset"
-	const {zoomer, reset} = createZoomer()
+	const {zoomer, reset,unzoom} = createZoomer()
 	export const zoomReset = reset
 
 	let width = 0;
@@ -20,14 +20,12 @@
 	$: setSize(height - (margin.top + margin.bottom), width - (margin.left + margin.right));
 	setContext('basemap', { projection: _projection });
 
-
-
 </script>
 
 <div id="svgwrapper" bind:clientWidth={width} bind:clientHeight={height}>
 	<svg use:zoomer={margin} style={`background-color:${background}`}>
 		<g>
-			<slot />
+			<slot/>
 		</g>
 	</svg>
 </div>

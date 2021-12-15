@@ -12,6 +12,7 @@
 	export let idAccessor = (feature) => JSON.stringify(feature.properties);
 	export let layerName = null;
 	export let addExtentsToProjection = true
+
 	const dispatch = createEventDispatcher();
 
 	let features = geojson.features;
@@ -56,9 +57,30 @@
 	$: _styleAccessor = (feature, selection) =>
 		styleAccessor(feature, isSelected(feature, selection));
 
+
+	let over = []
+	let offsetX,offsetY
+		
 	const clickHandler = (feature, event) => {
 		selection = nMulti(selectMode)(selection, feature);
 		dispatch('click', { feature, event });
+	};
+
+	const mousemoveHandler = (feature, event) => {
+		offsetX=event.offsetX
+		offsetY=event.offsetY
+		dispatch('mousemove', { feature, event })
+	};
+
+	const mouseleaveHandler = (feature, event) => {
+		over = over.filter((d) => idAccessor(d) != idAccessor(feature))
+		dispatch('mouseleave', { feature, event })
+	};
+
+	const mouseenterHandler = (feature, event) => {
+		over.push(feature)
+		over = over
+		dispatch('mouseenter', { feature, event })
 	};
 
 	$: if (selection.length > selectMode) {
@@ -67,6 +89,10 @@
 		}
 		selection = selection;
 	}
+
+	$: hoveredFeature = over[0] 
+	$: console.log({offsetX,offsetY})
+
 </script>
 
 <g class="map-group">
@@ -76,9 +102,17 @@
 			{..._styleAccessor(feature, selection)}
 			d={geoPathFn(feature)}
 			on:click={(e) => clickHandler(feature, e)}
-			on:mousemove={(e) => dispatch('mousemove', { feature, event: e })}
-			on:mouseenter={(e) => dispatch('mouseenter', { feature, event: e })}
-			on:mouseleave={(e) => dispatch('mouseleave', { feature, event: e })}
+			on:mousemove={(e) => mousemoveHandler(feature,e)}
+			on:mouseenter={(e) => mouseenterHandler(feature,e)}
+			on:mouseleave={(e) => mouseleaveHandler(feature,e)}
 		/>
-	{/each}
+	{/each}	
+</g>
+
+<g class = tooltip>
+	{#if hoveredFeature}
+		<g style={`transform:translate(${offsetX}px,${offsetY}px);pointer-events:none`}>
+			<slot {hoveredFeature}/>
+		</g>
+	{/if}
 </g>
