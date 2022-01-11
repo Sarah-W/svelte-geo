@@ -53,7 +53,7 @@ import { object_without_properties } from 'svelte/internal';
 
 <div class = wrapper >
   <div class="basemap" style= "width:700px;height:700px">
-    <BaseMap let:unzoom>
+    <BaseMap>
       <FeatureLayer
         geojson={rto}
         styleAccessor={(feature) => ({
@@ -67,10 +67,11 @@ import { object_without_properties } from 'svelte/internal';
         on:mouseenter={(e)=>hovered = e.detail.feature}
         on:mouseleave={()=>hovered = null}
         let:hoveredFeature
-        {unzoom}
       >
-      <text>{hoveredFeature?.properties.RTO2017__1}</text>
+      <circle r=9 fill="red"></circle>
+      <text text-anchor="middle">{hoveredFeature?.properties.RTO2017__1}</text>
     </FeatureLayer>
+    
     </BaseMap>
   </div>
   <div class = commentary>
@@ -79,7 +80,7 @@ import { object_without_properties } from 'svelte/internal';
   </div>
 </div>
 
-<!-- <div class = wrapper >
+<div class = wrapper >
   <div class="basemap">
     <BaseMap {projection}>
       <FeatureLayer
@@ -138,7 +139,9 @@ import { object_without_properties } from 'svelte/internal';
           idAccessor={(feature) => feature.properties.RTO2017__1}
           on:destroy={reset}
           on:mount={reset}
-        />
+        >
+      <circle r = 4 cy=-4 fill ="blue"></circle>
+      </FeatureLayer>
       {/if}
       {#if showSouth}   
         <FeatureLayer
@@ -153,7 +156,9 @@ import { object_without_properties } from 'svelte/internal';
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
           bind:selection = {southSelection}
-        />
+        >
+      <rect width=8 height =8 x = -4 y= -4 fill = "green" ></rect>
+      </FeatureLayer>
       {/if}
     </BaseMap>
   </div>
@@ -176,7 +181,7 @@ import { object_without_properties } from 'svelte/internal';
     <button on:click={reset} >reset zoom</button>
 
   </div>
-</div> -->
+</div>
 
 <style>
   div.wrapper {

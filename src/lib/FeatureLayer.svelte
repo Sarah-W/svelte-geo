@@ -16,7 +16,8 @@
 	const dispatch = createEventDispatcher();
 
 	let features = geojson.features;
-	let { projection } = getContext('basemap');
+	let mapGroup
+	let { projection, margin, applyCurrentZoom } = getContext('basemap');
 
 	if(addExtentsToProjection){	layerName = projection.addLayer(geojson, layerName)};
   
@@ -25,7 +26,10 @@
 		dispatch("destroy",layerName)
 	})
 
-	onMount(()=>dispatch("mount",layerName))
+	onMount(()=>{
+		dispatch("mount",layerName)
+		applyCurrentZoom(mapGroup)
+	})
 
 	$: geoPathFn = geoPath($projection);
 
@@ -59,7 +63,7 @@
 
 
 	let over = []
-	let offsetX,offsetY
+	let {offsetX,offsetY}=getContext('offset')
 		
 	const clickHandler = (feature, event) => {
 		selection = nMulti(selectMode)(selection, feature);
@@ -67,8 +71,6 @@
 	};
 
 	const mousemoveHandler = (feature, event) => {
-		offsetX=event.offsetX
-		offsetY=event.offsetY
 		dispatch('mousemove', { feature, event })
 	};
 
@@ -91,11 +93,10 @@
 	}
 
 	$: hoveredFeature = over[0] 
-	$: console.log({offsetX,offsetY})
 
 </script>
 
-<g class="map-group">
+<g class="map-group" bind:this = {mapGroup}>
 	{#each features as feature}
 		<path
 			class="feature-path"
@@ -111,8 +112,14 @@
 
 <g class = tooltip>
 	{#if hoveredFeature}
-		<g style={`transform:translate(${offsetX}px,${offsetY}px);pointer-events:none`}>
+		<g style={`transform:translate(${$offsetX-margin.left}px,${$offsetY-margin.top}px)`}>
 			<slot {hoveredFeature}/>
 		</g>
 	{/if}
 </g>
+
+<style>
+	.tooltip{
+		pointer-events:none
+	}
+</style>

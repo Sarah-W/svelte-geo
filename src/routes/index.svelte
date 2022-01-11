@@ -8,6 +8,7 @@
   import SelectAreas2 from './_examples/SelectAreas2.svelte';
   import LayerBehavior from './_examples/LayerBehavior.svelte';
   import ZoomBehavior from './_examples/ZoomBehavior.svelte';
+  import Tooltip from './_examples/Tooltip.svelte';
 
 </script>
 <div class = container>
@@ -22,6 +23,7 @@
   <SelectAreas2></SelectAreas2>
   <LayerBehavior></LayerBehavior>
   <ZoomBehavior></ZoomBehavior>
+  <Tooltip></Tooltip>
 
 </div>
 

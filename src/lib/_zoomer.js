@@ -1,32 +1,39 @@
 import { zoom, zoomIdentity} from 'd3-zoom';
 import { select } from 'd3-selection';
+import { writable } from 'svelte/store';
 
 export function createZoomer() {
 	const z = zoom()
 	let _svg
+	let currentTransform = zoomIdentity
+
+	let offsetX = writable(0)
+	let offsetY = writable(0)
 
 	return {
-		zoomer: (svg, offset) => {
+		zoomer: (svg) => {
 			_svg = svg
-			const { left, top } = offset ?? { left: 0, top: 0 };
-			select(svg).select('g').attr('style', `transform:translate(${left}px, ${top}px)`);
 			select(svg).call(
-				z.on('zoom', ({ transform }) => {
+				z.on('zoom', ({transform,sourceEvent}) => {
+					if (sourceEvent){
+						offsetX.set(sourceEvent.offsetX)
+						offsetY.set(sourceEvent.offsetY)
+					}
 					const { k, x, y } = transform;
-					console.log(k,x,y)
-					let selection = select(svg)
-						.select('g')
-						.attr('style', `transform:translate(${left + x}px, ${top + y}px) scale(${k})`);
-					selection.selectAll("g.tooltip").attr('style', `transform:scale(${1/k})translate(${-1*(x+left)}px, ${-1*(y+top)}px)`)	
+					select(svg).select('g').selectAll('g.map-group')
+						.attr('style', `transform:translate(${x}px, ${y}px) scale(${k})`);
 				})
 			);
 		},
 		reset: () => {
 			select(_svg).transition().duration(750).call(z.transform, zoomIdentity);
+			currentTransform = zoomIdentity
 		},
-		unzoom:(element)=>{
-			select(element).call(z.transform, zoomIdentity);
-		}
+		applyCurrentZoom: (element) => {
+			select(element).call(z.transform, currentTransform)
+		},
+		offsetX,
+		offsetY
 	}
 }
 
