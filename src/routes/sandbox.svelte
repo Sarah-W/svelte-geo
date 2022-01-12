@@ -6,7 +6,7 @@
 	import southisland from '../_geojson/rto2017_si_simplified_3dp.geojson.json';
 	import { geoAlbers, geoEqualEarth, geoEquirectangular, geoMercator, geoTransverseMercator } from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
-import { object_without_properties } from 'svelte/internal';
+
 
 	let selection = [];
 	let n = 2;
@@ -39,7 +39,7 @@ import { object_without_properties } from 'svelte/internal';
   let showSouth = false
   let southSelection = []
   let color = "#030417"
-  let reset = false
+  let reset = ()=>{console.log("i'm not resetting")}
 
 </script>
 
@@ -137,8 +137,6 @@ import { object_without_properties } from 'svelte/internal';
           })}
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
-          on:destroy={reset}
-          on:mount={reset}
         >
       <circle r = 4 cy=-4 fill ="blue"></circle>
       </FeatureLayer>

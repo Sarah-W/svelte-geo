@@ -19,6 +19,7 @@ export function createZoomer() {
 						offsetX.set(sourceEvent.offsetX)
 						offsetY.set(sourceEvent.offsetY)
 					}
+					currentTransform=transform
 					const { k, x, y } = transform;
 					select(svg).select('g').selectAll('g.map-group')
 						.attr('style', `transform:translate(${x}px, ${y}px) scale(${k})`);
@@ -30,7 +31,7 @@ export function createZoomer() {
 			currentTransform = zoomIdentity
 		},
 		applyCurrentZoom: (element) => {
-			select(element).call(z.transform, currentTransform)
+			select(_svg).transition().duration(750).call(z.transform, currentTransform)
 		},
 		offsetX,
 		offsetY
