@@ -13,7 +13,7 @@
 </script>
 
 <div class = example>
-    <h3>Selectable areas</h3>
+    <!-- <h3>Selectable areas</h3> -->
 
     <p>Selecting an area adds it's uid to the selection array, which you can bind to.</p>
     <p>

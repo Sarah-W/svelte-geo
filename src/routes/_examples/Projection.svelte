@@ -14,7 +14,7 @@
 </script>
 
 <div class = example>
-    <h3>Projection</h3>
+    <!-- <h3>Projection</h3> -->
 
     <p> The default projection is geoMercator, but you can use any <a href = "https://github.com/d3/d3-geo">d3-geo</a> projection function that works for your geojson.</p>
     <p> You may switch between projections on the fly. </p>

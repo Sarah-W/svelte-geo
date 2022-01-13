@@ -9,7 +9,7 @@
 </script>
 
 <div class = example>
-    <h3>Minimum viable</h3>
+    <!-- <h3>Minimum viable</h3> -->
     <p>The map inherits the size of the container you put it in. 
     The bounding boxes for the layers are calculated and the projection is generated to fit automatically.</p>
     <div class = row>

@@ -15,7 +15,7 @@
 </script>
 
 <div class = example>
-    <h3>Tooltip</h3>
+    <!-- <h3>Tooltip</h3> -->
     <p>Place SVG elements inside a FeatureLayer tag to create a tooltip. The origin of the tooltip is at the position of the pointer, so you can transform your SVG elements accordingly. </p>
     <div class = row>
       <div class = output>
@@ -24,9 +24,9 @@
             <FeatureLayer
               geojson={rto}
               styleAccessor={(feature) => ({
-                'fill': 'chocolate',
+                'fill': 'black',
                 'fill-opacity': 0.4,
-                'stroke':'chocolate',
+                'stroke':'black',
                 'stroke-width': 1,
                 'vector-effect': 'non-scaling-stroke'
               })}
@@ -68,9 +68,9 @@ ${closeScript}
     <FeatureLayer
       geojson={rto}
       styleAccessor={(feature) => ({
-        'fill': 'chocolate',
+        'fill': 'black',
         'fill-opacity': 0.4,
-        'stroke':'chocolate',
+        'stroke':'black',
         'stroke-width': 1,
         'vector-effect': 'non-scaling-stroke'
       })}
