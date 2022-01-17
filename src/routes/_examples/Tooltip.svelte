@@ -17,7 +17,8 @@
 <div class = example>
     <!-- <h3>Tooltip</h3> -->
     <p>Place SVG elements inside a FeatureLayer tag to create a tooltip. The origin of the tooltip is at the position of the pointer, so you can transform your SVG elements accordingly. </p>
-    <div class = row>
+    <p>See the <a href="https://svelte.dev/repl/9d83fe339981468c875a2e60da02ec16" target="_blank">REPL</a></p>
+   <div class = row>
       <div class = output>
         <div class="basemap" >
           <BaseMap>

@@ -12,6 +12,7 @@
     <!-- <h3>Minimum viable</h3> -->
     <p>The map inherits the size of the container you put it in. 
     The bounding boxes for the layers are calculated and the projection is generated to fit automatically.</p>
+    <p>See the <a href="https://svelte.dev/repl/60c8ce8797cf464c8943c2064d379f4d" target="_blank">REPL</a></p>
     <div class = row>
       <div class = output>
         <div class="basemap" >

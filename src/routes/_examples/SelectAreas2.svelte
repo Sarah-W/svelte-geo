@@ -20,6 +20,8 @@
       You can change the number of areas you are choosing to select programmatically. Changing to a
       smaller number discards the oldest selections first.
     </p>
+    <p>See the <a href="https://svelte.dev/repl/5168c4cb3a85498a9589a218a5929c7b" target="_blank">REPL</a></p>
+    
 
     <div class = row>
       <div class = output>

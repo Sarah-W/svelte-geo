@@ -27,8 +27,8 @@
     <p>The current selection will be lost when the layer is destroyed, but you can make it persist by binding it to a variable. 
       Here, the selection for the South Island layer is bound, the North Island one is not.</p>
     <p>Try selecting a few areas on each island, then turning the layers on and off.</p>
-    
-
+    <p>See the <a href="https://svelte.dev/repl/6c3c75c43c0244d29b4ebc7da2ce5ed6" target="_blank">REPL</a></p>
+     
     <div class = row>
       <div class = output>
         <div class="basemap">

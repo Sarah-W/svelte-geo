@@ -16,6 +16,7 @@
     <!-- <h3>Clickable areas</h3> -->
 
     <p>Clicking on an area dispatches a click event. e.detail contains the geojson feature object.</p>
+    <p>See the <a href="https://svelte.dev/repl/8d555771b023439b9d1b01316a743789" target="_blank">REPL</a></p>
     <div class = row>
       <div class = output>
         <div class="basemap">

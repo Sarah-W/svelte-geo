@@ -30,7 +30,8 @@
       Since this may interact strangely with changes in projection, you may want to reset the zoom when adding or removing a layer. 
       In this example, zoom is reset when adding or removing the North Island layer.
     </p>
-  
+    <p>See the <a href="https://svelte.dev/repl/f739a1275b664072839c41f3b340c6fe" target="_blank">REPL</a></p>
+   
     <div class = row>
       <div class = output>
         <div class="basemap">

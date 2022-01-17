@@ -28,6 +28,9 @@
       its first argument the geojson feature, and as the second a boolean which indicates whether 
       it is selected or not. It should return a style object.   
     </p>
+
+    <p>See the <a href="https://svelte.dev/repl/96c7d74d3c164aca8820d275de32d403" target="_blank">REPL</a></p>
+    
     <div class = row>
       <div class = output>
         <p>Select up to 3 areas</p>

@@ -44,6 +44,8 @@
       Areas are styled using a d3-scale linear scale, to change the fill-opacity acccording to the
       length of their names (feature.properties.RTO2017__1). This is one method of creating a choropleth.
     </p>
+    <p>See the <a href="https://svelte.dev/repl/8bcf4c9230fc479995440e5a6597f87e" target="_blank">REPL</a></p>
+    
     <div class = row>
       <div class = output>
         <div class="basemap">
@@ -98,7 +100,8 @@ ${closeScript}
     <p>
       Areas are styled using a d3-scale ordinal scale, acccording to the first letter of their name.
     </p>
-
+    <p>See the <a href="https://svelte.dev/repl/4de88c11797a4cb78e92aff8f7745ab8" target="_blank">REPL</a></p>
+    
     <div class = row>
       <div class = output>
         <div class="basemap">

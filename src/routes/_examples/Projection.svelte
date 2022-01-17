@@ -18,6 +18,7 @@
 
     <p> The default projection is geoMercator, but you can use any <a href = "https://github.com/d3/d3-geo">d3-geo</a> projection function that works for your geojson.</p>
     <p> You may switch between projections on the fly. </p>
+    <p>See the <a href="https://svelte.dev/repl/142b08dcbd234f46a52337c57b7905a2" target="_blank">REPL</a></p>
 
     <div class = row> 
       <div class = output>
