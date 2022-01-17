@@ -39,7 +39,7 @@ BaseMap sets up things which are common to all feature layers e.g. the map proje
 
 **projection** : a [D3-geo projection](https://github.com/d3/d3-geo)  
 **margin** : a margin object of the form `{left:10,right:10,top:10,bottom:10}`. Measurements are in px.   
-**background** : sets the background color of the .svg element.   
+**background** : sets the background color of the `<svg>` element.   
 **zoomReset** : exports a reset function for the map zoom.   
 
 ### slot
@@ -65,8 +65,8 @@ Mount and destroy events are dispatched when the `<FeatureLayer>` element is cre
 **mousemove**  
 **mouseenter**  
 **mouseleave**  
-Mouse events are dispatched when the SVG elements in the `<Featurelayer>` are interacted with. `e.detail` contains the originating event and the feature proprtites.
+Mouse events are dispatched when the `<svg>` elements in the `<Featurelayer>` are interacted with. `e.detail` contains the originating event and the feature.
  
 
 ### slot
-Any SVG elements placed inside the `<FeatureLayer>` element will be rendered as a tooltip with its origin at the position of the mouse pointer. Slot prop `hoveredFeature` is provided and contains the feature properties.  
+Any SVG elements placed inside the `<FeatureLayer>` element will be rendered as a tooltip with its origin at the position of the mouse pointer. Slot prop `hoveredFeature` is provided and contains the feature.  
