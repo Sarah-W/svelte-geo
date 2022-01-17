@@ -51,7 +51,7 @@ ${closeScript}
   <BaseMap projection = { geoEqualEarth } >
     <FeatureLayer geojson={coastline} />
   </BaseMap>
-<div>
+</div>
 
   <style> 
   .basemap {
