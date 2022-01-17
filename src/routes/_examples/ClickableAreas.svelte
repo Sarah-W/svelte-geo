@@ -13,7 +13,7 @@
 </script>
 
 <div class = example>
-    <h3>Clickable areas</h3>
+    <!-- <h3>Clickable areas</h3> -->
 
     <p>Clicking on an area dispatches a click event. e.detail contains the geojson feature object.</p>
     <div class = row>

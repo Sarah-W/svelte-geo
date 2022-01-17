@@ -33,7 +33,7 @@
 </script>
 
 <div class = example>
-    <h3>Color and Style </h3>
+    <!-- <h3>Color and Style </h3> -->
 
     <p>
       Apply styles to areas based on feature information by supplying a styleAccessor function. The function takes

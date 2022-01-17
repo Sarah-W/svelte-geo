@@ -7,10 +7,13 @@
 	import { geoAlbers, geoEqualEarth, geoEquirectangular, geoMercator, geoTransverseMercator } from 'd3-geo';
 	import { scaleOrdinal, scaleLinear } from 'd3-scale';
 
+
 	let selection = [];
 	let n = 2;
 	let nIsInfinite = false;
-	let clicked;
+	let clicked
+  let hovered
+
 	let foodscale = scaleOrdinal().range([
 		'lime',
 		'tomato',
@@ -36,7 +39,7 @@
   let showSouth = false
   let southSelection = []
   let color = "#030417"
-  let reset = false
+  let reset = ()=>{console.log("i'm not resetting")}
 
 </script>
 
@@ -46,6 +49,36 @@
 <p>This example is a bit like that.</p> 
 <b>This is a sandbox primarily for testing things out. It may change randomly and without warning! </b>
 
+
+
+<div class = wrapper >
+  <div class="basemap" style= "width:700px;height:700px">
+    <BaseMap>
+      <FeatureLayer
+        geojson={rto}
+        styleAccessor={(feature) => ({
+          'fill': 'chocolate',
+          'fill-opacity': linearscale(feature.properties.RTO2017__1.length),
+          'stroke':'chocolate',
+          'stroke-width': 1,
+          'vector-effect': 'non-scaling-stroke'
+        })}
+        on:click={(e) => (clicked = e.detail.feature)}
+        on:mouseenter={(e)=>hovered = e.detail.feature}
+        on:mouseleave={()=>hovered = null}
+        let:hoveredFeature
+      >
+      <circle r=9 fill="red"></circle>
+      <text text-anchor="middle">{hoveredFeature?.properties.RTO2017__1}</text>
+    </FeatureLayer>
+    
+    </BaseMap>
+  </div>
+  <div class = commentary>
+    <p>The last thing you clicked was: </p> <pre>{JSON.stringify(clicked?.properties, undefined, 2)}</pre>
+    <p>You are hovering over: </p> <pre>{JSON.stringify(hovered?.properties, undefined, 2)}</pre>
+  </div>
+</div>
 
 <div class = wrapper >
   <div class="basemap">
@@ -104,9 +137,9 @@
           })}
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
-          on:destroy={reset}
-          on:mount={reset}
-        />
+        >
+      <circle r = 4 cy=-4 fill ="blue"></circle>
+      </FeatureLayer>
       {/if}
       {#if showSouth}   
         <FeatureLayer
@@ -121,7 +154,9 @@
           selectMode={Infinity}
           idAccessor={(feature) => feature.properties.RTO2017__1}
           bind:selection = {southSelection}
-        />
+        >
+      <rect width=8 height =8 x = -4 y= -4 fill = "green" ></rect>
+      </FeatureLayer>
       {/if}
     </BaseMap>
   </div>

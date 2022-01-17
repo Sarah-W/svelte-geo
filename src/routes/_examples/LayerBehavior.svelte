@@ -17,7 +17,7 @@
 </script>
 
 <div class = example>
-    <h3>Multiple Layers</h3>
+    <!-- <h3>Multiple Layers</h3> -->
     <p>
       You may add multiple layers. The projection bounding box is set to the aggregate of the layer bounding boxes. </p>
     <p>

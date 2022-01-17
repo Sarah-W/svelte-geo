@@ -18,10 +18,10 @@
 </script>
 
 <div class = example>
-    <h3>Zoom/pan behavior and Zoom Reset</h3>
+    <!-- <h3>Zoom/pan behavior and Zoom Reset</h3> -->
     <p>
       Zooming is enabled by default. 
-      Zoom behavior is provided using <a href=https://github.com/d3/d3-zoom>d3-zoom</a>. It scales the svg element, and does not effect the projection.  
+      Zoom behavior is provided using <a href=https://github.com/d3/d3-zoom>d3-zoom</a>. It scales and translates the <code>&lt;g&gt;</code> elements containing the map paths, and does not affect the projection.  
     </p>
     <p>
       BaseMap exports the function <code>zoomReset()</code> which takes no arguments and resets zoom and pan. 
