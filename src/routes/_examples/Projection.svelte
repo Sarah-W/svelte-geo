@@ -48,7 +48,7 @@ ${closeScript}
 <label for="geoMercator">geoMercator</label>
 
 <div class = basemap>
-  <BaseMap projection = { geoEqualEarth } >
+  <BaseMap projection = { projection } >
     <FeatureLayer geojson={coastline} />
   </BaseMap>
 </div>

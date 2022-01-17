@@ -63,33 +63,33 @@
       <div class = code>
         <SSRPrism language="svelte">
             {`${openScript}
-    import { BaseMap, FeatureLayer } from 'svelte-geo';
-    import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
-    import { scaleLinear } from 'd3-scale';
-    let linearScale = scaleLinear().domain([5, 15]);
-  ${closeScript}  
-  <div class="basemap">
-    <BaseMap background = {'#fbf9e4'}>
-      <FeatureLayer
-        geojson={rto}
-        styleAccessor={(feature) => ({
-          'fill': 'tomato',
-          'fill-opacity': linearScale(feature.properties.RTO2017__1.length),
-          'stroke': 'tomato',
-          'vector-effect': 'non-scaling-stroke'
-        })}
-      />
-    </BaseMap>
-  </div>  
+  import { BaseMap, FeatureLayer } from 'svelte-geo';
+  import rto from './_geojson/rto2017_simplified_3dp.geojson.json';
+  import { scaleLinear } from 'd3-scale';
+  let linearScale = scaleLinear().domain([5, 15]);
+${closeScript}  
+<div class="basemap">
+  <BaseMap background = {'#fbf9e4'}>
+    <FeatureLayer
+      geojson={rto}
+      styleAccessor={(feature) => ({
+        'fill': 'tomato',
+        'fill-opacity': linearScale(feature.properties.RTO2017__1.length),
+        'stroke': 'tomato',
+        'vector-effect': 'non-scaling-stroke'
+      })}
+    />
+  </BaseMap>
+</div>  
 
-  <style> 
-  .basemap {
-    border: black solid thin;
-    background-color: #f9f9ff;
-    width: 400px;
-    height: 400px;
-    margin: 20px;
-  }
+<style> 
+.basemap {
+  border: black solid thin;
+  background-color: #f9f9ff;
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+}
 <\/style>`}
         </SSRPrism>
       </div>

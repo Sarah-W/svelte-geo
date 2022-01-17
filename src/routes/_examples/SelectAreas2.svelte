@@ -75,7 +75,7 @@ ${closeScript}
 	areas.
 </label>
 <label>
-	<input type="checkbox" bind:checked={nIsInfinite} />
+	<input type="checkbox" bind:checked={selectModeValueIsInfinite} />
 	Infinite
 </label> <br />
 <p>Current Selection: {JSON.stringify(selection)}</p>   
