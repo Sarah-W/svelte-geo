@@ -79,8 +79,7 @@
       <div class = code>
         <SSRPrism language="svelte">
               {`${openScript}
-  import BaseMap from '$lib/BaseMap.svelte';
-  import FeatureLayer from '$lib/FeatureLayer.svelte';
+  import { BaseMap, FeatureLayer } from 'svelte-geo';
   import northisland from '../../_geojson/rto2017_ni_simplified_3dp.geojson.json';
   import southisland from '../../_geojson/rto2017_si_simplified_3dp.geojson.json';
   import { scaleLinear } from 'd3-scale';
