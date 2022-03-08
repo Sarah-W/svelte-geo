@@ -55,13 +55,13 @@
       <div class = code>
         <SSRPrism language="svelte">
 {`${openScript}	
-  import BaseMap from '$lib/BaseMap.svelte';
-  import FeatureLayer from '$lib/FeatureLayer.svelte';
+  import { BaseMap, FeatureLayer } from 'svelte-geo';
   import rto from '../../_geojson/rto2017_simplified_3dp.geojson.json';
 
   // bind:clientWidth does not work with svg elements, so we do this the long way. 
   let textElement
   $:textBoxWidth = textElement ? textElement.getComputedTextLength()+10 : 0
+  
 ${closeScript}
 
 <div class="basemap" >
