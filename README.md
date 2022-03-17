@@ -29,7 +29,7 @@ A tiny library for making maps, intended for use in data visualisation projects.
     >
       <text>{hoveredFeature.someAttribute}</text>
     </FeatureLayer>
-  <\BaseMap>
+  </BaseMap>
 ```
 
 BaseMap sets up things which are common to all feature layers e.g. the map projection and the margin to allow around the layers.
